@@ -28,15 +28,13 @@ export default function Terminal() {
 `;
 
   const mobileWelcomeMessage = `
-██╗    ██╗███████╗██╗     
-██║    ██║██╔════╝██║     
-██║ █╗ ██║█████╗  ██║     
-██║███╗██║██╔══╝  ██║     
-╚███╔███╔╝███████╗███████╗
- ╚══╝╚══╝ ╚══════╝╚══════╝
-                          
-Terminal v1.0.0 connected ✓
-Type 'help' for commands`;
+██████████████████████████
+█ Bilal Siki Terminal v1 █
+██████████████████████████
+
+Connection ✓
+Type 'help' for commands
+`;
 
   const welcomeMessage = {
     content: desktopWelcomeMessage,
@@ -302,12 +300,15 @@ Type a command and press Enter to execute.`;
         <div className="flex items-center justify-between w-full">
           {/* Left side: Secure connection and time */}
           <div className="flex items-center gap-2 sm:gap-3">
-            <span className="terminal-accent text-xs font-bold">◉ SECURE CONNECTION</span>
-            <span className="terminal-muted text-xs ml-2">{new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
             <span className="terminal-prompt text-xs sm:text-sm font-bold truncate ml-4">
               <span className="hidden sm:inline">┌─[bilal06siki@Portfolio]─[~]</span>
               <span className="sm:hidden">[bilal06siki@Portfolio]</span>
             </span>
+          </div>
+          {/* Right side: Secure connection and time */}
+          <div className="flex items-center gap-2 ml-auto">
+            <span className="terminal-accent text-xs font-bold">◉ SECURE CONNECTION</span>
+            <span className="terminal-muted text-xs ml-2">{new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
           </div>
         </div>
       </div>
