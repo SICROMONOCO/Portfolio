@@ -1,4 +1,4 @@
-import data from '../lib/data.json';
+import data from "../lib/data.json";
 
 export const contact = (): string => {
   return `┌─────────────────────────────────────────────────────────────┐

@@ -1,4 +1,4 @@
-import data from '../lib/data.json';
+import data from "../lib/data.json";
 
 export const about = (): string => {
   const { greeting, education, location, summary, languages } = data.about;
@@ -10,14 +10,14 @@ export const about = (): string => {
 ${greeting}
 
 🎓 EDUCATION:
-${education.map(item => `   • ${item}`).join('\n')}
+${education.map((item) => `   • ${item}`).join("\n")}
 
 🌍 LOCATION:
    ${location}
 
 💡 SUMMARY:
-${summary.map(item => `   • ${item}`).join('\n')}
+${summary.map((item) => `   • ${item}`).join("\n")}
 
 🌐 LANGUAGES:
-${languages.map(item => `   • ${item}`).join('\n')}`;
+${languages.map((item) => `   • ${item}`).join("\n")}`;
 };
