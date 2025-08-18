@@ -34,7 +34,7 @@
     "familiar_tools": [
       "Wireshark",
       "Nmap",
-      "Metasploit (academic exposure)",
+      "airckrack-ng (some exposure)",
       "Burp Suite (academic exposure)"
     ],
     "soft": [
@@ -65,7 +65,7 @@
       "name": "S.D.B.M.A.S",
       "description": "An educational management system built to demonstrate database integration and management.",
       "technologies": "Python, MySQL",
-      "repo": "github.com/SICROMONOCO/SDBMS"
+      "repo": "github.com/SICROMONOCO/SQL-Project"
     }
   ],
   "contact": {
