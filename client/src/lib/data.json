@@ -7,10 +7,9 @@
     ],
     "location": "Ouarzazate, Drâa-Tafilalet, Morocco",
     "summary": [
-      "Passionate about cybersecurity and technology",
-      "Eager to learn and grow in the field",
-      "Strong foundation in science and mathematics",
-      "Motivated self-learner, open to new challenges"
+      "A proactive and curious Cybersecurity Student passionate about building a strong foundation in defensive security.",
+      "Driven by the challenge of protecting digital environments and motivated to translate academic knowledge into practical skills.",
+      "As a dedicated self-learner, I am constantly exploring new technologies and methodologies in the field."
     ],
     "languages": [
       "Arabic (Native/Bilingual)",
@@ -20,22 +19,29 @@
   },
   "skills": {
     "technical": [
-      "Python (Beginner)",
-      "C (Beginner)",
-      "HTML, CSS (Beginner)",
-      "Bash scripting (Basic)",
-      "MySQL (Basic)"
+      "Python (for scripting)",
+      "C (foundational knowledge)",
+      "HTML & CSS (for front-end structure)",
+      "Bash (basic shell scripting)",
+      "MySQL (database fundamentals)"
     ],
-    "cybersecurity": [
+    "cybersecurity_concepts": [
       "Cybersecurity Fundamentals",
       "Critical Infrastructure Protection",
-      "Cybersecurity Awareness"
+      "Cybersecurity Awareness",
+      "Network Basics"
+    ],
+    "familiar_tools": [
+      "Wireshark",
+      "Nmap",
+      "Metasploit (academic exposure)",
+      "Burp Suite (academic exposure)"
     ],
     "soft": [
       "Critical Thinking",
+      "Problem Solving",
       "Communication",
-      "Multitasking",
-      "Project Management (Intro)"
+      "Multitasking"
     ],
     "certifications": [
       "Google Cybersecurity Professional Certificate (2025)",
@@ -51,11 +57,15 @@
   "projects": [
     {
       "name": "CyberPack",
-      "description": "TypeScript"
+      "description": "A web application to unify and archive educational resources for cybersecurity students, simplifying access to learning materials.",
+      "technologies": "TypeScript, React, Node.js",
+      "repo": "github.com/SICROMONOCO/CyberPack"
     },
     {
-      "name": "SQL-Project",
-      "description": "Python, MySQL"
+      "name": "S.D.B.M.A.S",
+      "description": "An educational management system built to demonstrate database integration and management.",
+      "technologies": "Python, MySQL",
+      "repo": "github.com/SICROMONOCO/SDBMS"
     }
   ],
   "contact": {
