@@ -1,0 +1,70 @@
+{
+  "about": {
+    "greeting": "👋 Hello! I'm Bilal Siki, a Cybersecurity Student at Ibn Zohr University.",
+    "education": [
+      "Ibn Zohr University, Morocco",
+      "General Baccalauréat (Experimental Science) Score: 15.88 (Jul 2024)"
+    ],
+    "location": "Ouarzazate, Drâa-Tafilalet, Morocco",
+    "summary": [
+      "Passionate about cybersecurity and technology",
+      "Eager to learn and grow in the field",
+      "Strong foundation in science and mathematics",
+      "Motivated self-learner, open to new challenges"
+    ],
+    "languages": [
+      "Arabic (Native/Bilingual)",
+      "English (Limited working proficiency)",
+      "French (Elementary proficiency)"
+    ]
+  },
+  "skills": {
+    "technical": [
+      "Python (Beginner)",
+      "C (Beginner)",
+      "HTML, CSS (Beginner)",
+      "Bash scripting (Basic)",
+      "MySQL (Basic)"
+    ],
+    "cybersecurity": [
+      "Cybersecurity Fundamentals",
+      "Critical Infrastructure Protection",
+      "Cybersecurity Awareness"
+    ],
+    "soft": [
+      "Critical Thinking",
+      "Communication",
+      "Multitasking",
+      "Project Management (Intro)"
+    ],
+    "certifications": [
+      "Google Cybersecurity Professional Certificate (2025)",
+      "IT Fundamentals for Cybersecurity (2025)",
+      "CS50's Introduction to Cybersecurity (Harvard Online)",
+      "Introduction to Cybersecurity (Cisco)",
+      "Introduction to Critical Infrastructure Protection (OPSWAT)",
+      "AICE (AI, Project Management, Multitasking)",
+      "Python for Beginners, C, HTML (SoloLearn)",
+      "EF SET English Certificate (C1 Advanced)"
+    ]
+  },
+  "projects": [
+    {
+      "name": "CyberPack",
+      "description": "TypeScript"
+    },
+    {
+      "name": "SQL-Project",
+      "description": "Python, MySQL"
+    }
+  ],
+  "contact": {
+    "email": "bilal06siki@gmail.com",
+    "phone": "+212 723-537180",
+    "socials": {
+      "LinkedIn": "linkedin.com/in/bilal-siki-3ba436320",
+      "GitHub": "github.com/SICROMONOCO"
+    },
+    "location": "Ouarzazate, Morocco"
+  }
+}
