@@ -1,4 +1,4 @@
-import data from '../lib/data.json';
+import data from "../lib/data.json";
 
 export const contact = (): string => {
   return `<h1 class="text-2xl terminal-prompt mb-4">Contact Information</h1>
