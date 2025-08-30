@@ -8,41 +8,23 @@ interface TerminalState {
   output: Array<{ content: string; mobileContent?: string; type: 'normal' | 'error' | 'prompt' | 'command-title' }>;
 }
 
-// Utility to find and wrap URLs in anchor tags
-const linkify = (text: string): string => {
-  const urlRegex = /(https?:\/\/[^\s]+|www\.[^\s]+|[^\s]+\.[^\s]+)/g;
-  return text.replace(urlRegex, (url) => {
-    // Check if the URL is already in an anchor tag to avoid double wrapping
-    if (text.includes(`href="${url}"`)) {
-      return url;
-    }
-    const href = url.startsWith('http') ? url : `https://${url}`;
-    return `<a href="${href}" target="_blank" rel="noopener noreferrer" class="text-green-400 hover:underline">${url}</a>`;
-  });
-};
-
 export default function Terminal() {
   const [input, setInput] = useState('');
   const desktopWelcomeMessage = `
-██╗    ██╗███████╗██╗      ██████╗ ██████╗ ███╗   ███╗███████╗
-██║    ██║██╔════╝██║     ██╔════╝██╔═══██╗████╗ ████║██╔════╝
-██║ █╗ ██║█████╗  ██║     ██║     ██║   ██║██╔████╔██║█████╗  
-██║███╗██║██╔══╝  ██║     ██║     ██║   ██║██║╚██╔╝██║██╔══╝  
-╚███╔███╔╝███████╗███████╗╚██████╗╚██████╔╝██║ ╚═╝ ██║███████╗
- ╚══╝╚══╝ ╚══════╝╚══════╝ ╚═════╝ ╚═════╝ ╚═╝     ╚═╝╚══════╝
-                                                              
-  Connecting to Bilal Siki's Terminal v1.0.0...
-  Connection established ✓
-  Type 'help' to see available commands
+<div class="text-center">
+<h1 class="text-4xl font-bold terminal-prompt">Bilal Siki's Terminal</h1>
+<p class="terminal-muted">Connecting to v1.0.0...</p>
+<p class="text-green-400">Connection established ✓</p>
+<p>Type 'help' to see available commands</p>
+</div>
 `;
 
   const mobileWelcomeMessage = `
-██████████████████████████
-█ Bilal Siki Terminal v1 █
-██████████████████████████
-
-Connection ✓
-Type 'help' for commands
+<div class="text-center">
+<h1 class="text-2xl font-bold terminal-prompt">Bilal Siki's Terminal</h1>
+<p class="text-green-400">Connection ✓</p>
+<p>Type 'help' for commands</p>
+</div>
 `;
 
   const welcomeMessage = {
@@ -70,42 +52,36 @@ Type 'help' for commands
 
   const typeOutput = useCallback(async (text: string, type: 'normal' | 'error' = 'normal') => {
     setTerminalState(prev => ({ ...prev, isTyping: true }));
+    const newOutput = { content: '', type };
     setTerminalState(prev => ({
       ...prev,
-      output: [...prev.output, { content: 'Processing...', type: 'prompt' }]
+      output: [...prev.output, newOutput]
     }));
-    
-    const outputIndex = terminalState.output.length + 1;
-    await new Promise(resolve => setTimeout(resolve, 400));
-    
-    setTerminalState(prev => {
-      const newOutput = [...prev.output];
-      newOutput[outputIndex - 1] = { content: '', type };
-      return { ...prev, output: newOutput };
-    });
 
     const lines = text.split('\n');
-    let currentText = '';
     for (let i = 0; i < lines.length; i++) {
       const line = lines[i];
       for (let j = 0; j < line.length; j++) {
         await new Promise(resolve => setTimeout(resolve, 1));
-        currentText += line[j];
         setTerminalState(prev => {
-          const newOutput = [...prev.output];
-          newOutput[outputIndex - 1] = { content: currentText, type };
-          return { ...prev, output: newOutput };
+          const updatedOutput = [...prev.output];
+          updatedOutput[updatedOutput.length - 1].content += line[j];
+          return { ...prev, output: updatedOutput };
         });
         if (outputRef.current) {
           outputRef.current.scrollTop = outputRef.current.scrollHeight;
         }
       }
       if (i < lines.length - 1) {
-        currentText += '\n';
+        setTerminalState(prev => {
+          const updatedOutput = [...prev.output];
+          updatedOutput[updatedOutput.length - 1].content += '\n';
+          return { ...prev, output: updatedOutput };
+        });
       }
     }
     setTerminalState(prev => ({ ...prev, isTyping: false }));
-  }, [terminalState.output.length]);
+  }, []);
 
   const executeCommand = useCallback(async () => {
     if (!input.trim() || terminalState.isTyping) return;
@@ -125,7 +101,11 @@ Type 'help' for commands
       setTerminalState(prev => ({ ...prev, output: [welcomeMessage] }));
     } else if (commands[cmd]) {
       const result = commands[cmd]();
-      await typeOutput(result);
+      if (cmd === 'skills') {
+        addToOutput(result);
+      } else {
+        await typeOutput(result);
+      }
     } else {
       await typeOutput(`Command not found: ${cmd}\nType 'help' for available commands.`, 'error');
     }
@@ -221,18 +201,18 @@ Type 'help' for commands
         aria-label="Terminal Output Area"
       >
         {terminalState.output.map((line, index) => (
-          <div key={index} className={`animate-fade-in ${
+          <div key={index} className={`animate-fade-in ${ 
             line.type === 'error' ? 'mb-2 p-2 rounded bg-red-950/60 border border-red-700 text-red-300 font-mono' :
             line.type === 'prompt' ? 'mb-2 p-2 rounded bg-gray-900/60 border border-gray-700 text-green-300 font-mono' :
             'mb-2 p-2 rounded bg-gray-800/60 border border-gray-700 text-gray-100 font-mono'
           }`}>
             {line.mobileContent ? (
               <>
-                <pre className="hidden sm:block whitespace-pre-wrap text-xs sm:text-sm leading-relaxed font-['Ubuntu_Mono']" dangerouslySetInnerHTML={{ __html: linkify(line.content) }} />
-                <pre className="sm:hidden whitespace-pre-wrap text-xs leading-relaxed font-['Ubuntu_Mono']" dangerouslySetInnerHTML={{ __html: linkify(line.mobileContent) }} />
+                <div className="hidden sm:block whitespace-pre-wrap text-xs sm:text-sm leading-relaxed font-['Ubuntu_Mono']" dangerouslySetInnerHTML={{ __html: line.content }} />
+                <div className="sm:hidden whitespace-pre-wrap text-xs leading-relaxed font-['Ubuntu_Mono']" dangerouslySetInnerHTML={{ __html: line.mobileContent }} />
               </>
             ) : (
-              <pre className="whitespace-pre-wrap text-xs sm:text-sm leading-relaxed font-['Ubuntu_Mono']" dangerouslySetInnerHTML={{ __html: linkify(line.content) }} />
+              <div className="whitespace-pre-wrap text-xs sm:text-sm leading-relaxed font-['Ubuntu_Mono']" dangerouslySetInnerHTML={{ __html: line.content }} />
             )}
           </div>
         ))}
